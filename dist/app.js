@@ -6,12 +6,14 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const body_parser_1 = __importDefault(require("body-parser"));
 const dbRouter_1 = require("./router/dbRouter");
+const logger_1 = require("./logger");
 const app = (0, express_1.default)();
 // 解析 JSON
 app.use(body_parser_1.default.json());
 // 健康检查
 app.get("/health", (req, res) => {
     res.json({ status: "ok" });
+    (0, logger_1.logOperation)({ action: "health", status: "success", detail: { url: req.originalUrl } });
 });
 // 数据库桥接路由
 app.use("/db", (0, dbRouter_1.createDbRouter)());

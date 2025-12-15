@@ -1,6 +1,7 @@
 import express from "express";
 import bodyParser from "body-parser";
 import { createDbRouter } from "./router/dbRouter";
+import { logOperation } from "./logger";
 
 const app = express();
 
@@ -10,6 +11,7 @@ app.use(bodyParser.json());
 // 健康检查
 app.get("/health", (req, res) => {
   res.json({ status: "ok" });
+  logOperation({ action: "health", status: "success", detail: { url: req.originalUrl } });
 });
 
 // 数据库桥接路由

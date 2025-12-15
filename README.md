@@ -21,6 +21,7 @@ DB_HOST=127.0.0.1
 DB_USER=root
 DB_PASSWORD=yourpassword
 DB_NAME=test
+LOG_TO_CSV=false
 
 # 可选：批量/受限操作上限与白名单
 BATCH_DELETE_MAX=200
